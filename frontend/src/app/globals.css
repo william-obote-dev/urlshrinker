@@ -1,31 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * { box-sizing: border-box; }
-body { background: #080B14; color: #F0F0FF; font-family: "Space Grotesk", sans-serif; }
+
+body {
+  background: #0A0E14;
+  color: #EDEFF3;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #0E1420; }
-::-webkit-scrollbar-thumb { background: #232D42; border-radius: 3px; }
+::-webkit-scrollbar-track { background: #11151D; }
+::-webkit-scrollbar-thumb { background: #232A38; border-radius: 3px; }
+
+/* Visible keyboard focus everywhere — accessibility floor */
+:focus-visible {
+  outline: 2px solid #00C6AE;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
 
 @layer utilities {
-  .gradient-text {
-    background: linear-gradient(135deg, #6C63FF, #00E5FF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .panel {
+    @apply bg-panel border border-line rounded-xl;
   }
-  .card { @apply bg-surface border border-border rounded-2xl p-5; }
+  .hairline { @apply border-line; }
+
   .btn-primary {
-    @apply bg-indigo hover:opacity-90 text-white font-bold py-3 px-6 rounded-xl
-           transition-all active:scale-95 cursor-pointer border-none;
+    @apply bg-teal text-ink font-semibold py-3 px-6 rounded-lg
+           transition-all active:scale-[0.97] cursor-pointer border-none
+           hover:brightness-110;
   }
   .input-field {
-    @apply bg-navy border border-border rounded-xl px-4 py-3
-           text-white font-mono text-sm outline-none
-           focus:border-indigo focus:ring-2 focus:ring-indigo/20
-           placeholder:text-muted transition-all w-full;
+    @apply bg-ink border border-line rounded-lg px-4 py-3
+           text-paper font-mono text-sm outline-none
+           focus:border-teal transition-colors w-full
+           placeholder:text-dim;
   }
-  .tag { @apply text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full; }
+  .tag {
+    @apply text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md;
+  }
+  .mono-num {
+    @apply font-mono font-semibold tabular-nums;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.18em] text-dim;
+  }
+
+  /* Trace / pipeline connector line */
+  .trace-line {
+    background: repeating-linear-gradient(
+      90deg,
+      #232A38 0px, #232A38 6px, transparent 6px, transparent 12px
+    );
+    height: 1px;
+  }
+  .trace-line-v {
+    background: repeating-linear-gradient(
+      180deg,
+      #232A38 0px, #232A38 6px, transparent 6px, transparent 12px
+    );
+    width: 1px;
+  }
 }
